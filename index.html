@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-<script>(function(){try{var PIN="default",q=new URLSearchParams(location.search).get("theme"),d=new Date(),k=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate(),t=PIN||q||(k<=20261031?"halloween":""),h=document.documentElement;h.setAttribute("data-ver",{halloween:"V01.2",loykrathong:"V01.3"}[t]||"V01");if(t&&t!=="default")h.setAttribute("data-theme",t)}catch(e){}})()</script>
+<script>(function(){try{var PIN="",q=new URLSearchParams(location.search).get("theme"),d=new Date(),k=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate(),t=PIN||q||(k<=20261031?"halloween":""),h=document.documentElement;h.setAttribute("data-ver",{halloween:"V01.2",loykrathong:"V01.3"}[t]||"V01");if(t&&t!=="default")h.setAttribute("data-theme",t)}catch(e){}})()</script>
 <title>Device FU V01</title>
 <style>
 :root{--bg:#eef3f9;--card:#fff;--tx:#0b1f3a;--mu:#5a6b82;--bd:#d3deeb;--fl:#f5f8fc;--ac:#004b87;--hd:#004b87;--acs:#e5eef8;--acx:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -111,6 +111,16 @@ input,textarea,select{font-size:16px!important}
 @keyframes batflap{from{transform:scaleY(1)}to{transform:scaleY(.5)}}
 @media (prefers-reduced-motion:reduce){[data-theme="halloween"] #bats{display:none}}
 
+
+/* ---------- Halloween burst: bats fly out of the screen on open ---------- */
+#burst{position:fixed;left:0;top:0;width:100%;height:100%;z-index:60;pointer-events:none;overflow:hidden}
+#burst .bglow{position:absolute;left:0;top:0;width:100%;height:100%;background:radial-gradient(circle at 50% 46%,rgba(255,160,50,.6),rgba(95,32,150,.82) 36%,rgba(8,3,16,.95) 76%)}
+#burst .bt{position:absolute;width:240px;will-change:transform,opacity;transform-origin:50% 50%}
+#burst .bt svg{display:block;width:100%;height:auto;fill:#06010c;stroke:#c9a0ff;stroke-width:1.1;stroke-linejoin:round;animation:bflap .13s ease-in-out infinite alternate;transform-origin:50% 40%}
+#burst .bt .ey{fill:#ffa63a;stroke:none;filter:drop-shadow(0 0 2px #ff8a1f)}
+#burst .bt .fg{fill:#fff;stroke:none}
+@keyframes bflap{from{transform:scaleY(1)}to{transform:scaleY(.35)}}
+@media (prefers-reduced-motion:reduce){#burst{display:none}}
 .ver{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;background:rgba(255,255,255,.2);color:#fff;vertical-align:middle;white-space:nowrap}
 .top h1{flex:1;min-width:0}.top button.q{flex:0 0 auto}
 @media (max-width:420px){.top .in{gap:8px;padding-left:14px;padding-right:14px}h1{font-size:16px}.ver{margin-left:5px;padding:2px 7px;font-size:11px}.top button.q{padding:5px 11px;font-size:13px}}
@@ -460,6 +470,43 @@ document.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.target.tagName!=='
   const P='M32 7L30 2 29.5 9C26 7 20 5 12 8 8 9.5 4 12 1 17 5 15.5 8 16 10 19 12 16.5 15 16.5 18 19.5 20 17.5 23 18 25 21.5L27 20C28 24 30 27 32 30 34 27 36 24 37 20L39 21.5C41 18 44 17.5 46 19.5 49 16.5 52 16.5 54 19 56 16 59 15.5 63 17 60 12 56 9.5 52 8 44 5 38 7 34.5 9L34 2 32 7Z';
   const cfg=[[34,8,19,0],[24,24,26,-9],[42,38,22,-14],[20,56,29,-4],[30,70,24,-18],[26,14,32,-22]];
   box.innerHTML=cfg.map(([w,top,dur,del],n)=>`<div class="bat${n%2?' l':''}" style="width:${w}px;top:${top}%;animation-duration:${dur}s;animation-delay:${del}s${n%2?';animation-direction:reverse':''}"><i style="animation-duration:${(2.2+n*.45).toFixed(2)}s"><svg viewBox="0 0 64 32"><path d="${P}"/></svg></i></div>`).join('')})();
+(function(){
+  if(document.documentElement.dataset.theme!=='halloween')return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const PATH='M32 7L30 2 29.5 9C26 7 20 5 12 8 8 9.5 4 12 1 17 5 15.5 8 16 10 19 12 16.5 15 16.5 18 19.5 20 17.5 23 18 25 21.5L27 20C28 24 30 27 32 30 34 27 36 24 37 20L39 21.5C41 18 44 17.5 46 19.5 49 16.5 52 16.5 54 19 56 16 59 15.5 63 17 60 12 56 9.5 52 8 44 5 38 7 34.5 9L34 2 32 7Z';
+  let timer=0;
+  function burst(){
+    const old=document.getElementById('burst');if(old)old.remove();clearTimeout(timer);
+    const o=document.createElement('div');o.id='burst';o.setAttribute('aria-hidden','true');
+    const glow=document.createElement('div');glow.className='bglow';o.appendChild(glow);
+    document.body.appendChild(o);
+    const W=window.innerWidth,H=window.innerHeight,cx=W/2,cy=H*.46,N=12;
+    let end=0;
+    for(let i=0;i<N;i++){
+      const a=(i/N)*Math.PI*2+(Math.random()-.5)*.55;
+      const dist=Math.max(W,H)*(.9+Math.random()*.8);
+      const dx=Math.cos(a)*dist,dy=Math.sin(a)*dist*.85-H*.08;
+      const sc=2.2+Math.random()*2.3,rot=(Math.random()-.5)*50;
+      const dur=1500+Math.random()*1400,del=Math.random()*1000;
+      end=Math.max(end,dur+del);
+      const b=document.createElement('div');b.className='bt';
+      b.style.left=(cx-120)+'px';b.style.top=(cy-60)+'px';
+      b.innerHTML='<svg viewBox="0 0 64 32"><path d="'+PATH+'"/><path class="fg" d="M29.6 17.5L30.6 21 31.6 17.5ZM32.4 17.5L33.4 21 34.4 17.5Z"/><circle class="ey" cx="29.3" cy="13.2" r="1.5"/><circle class="ey" cx="34.7" cy="13.2" r="1.5"/></svg>';
+      o.appendChild(b);
+      b.animate([
+        {transform:'translate(0px,0px) scale(.05) rotate(0deg)',opacity:0,offset:0},
+        {opacity:1,offset:.12},
+        {transform:'translate('+dx*.42+'px,'+dy*.42+'px) scale('+sc*.3+') rotate('+rot*.5+'deg)',opacity:1,offset:.6},
+        {transform:'translate('+dx+'px,'+dy+'px) scale('+sc+') rotate('+rot+'deg)',opacity:.95,offset:1}
+      ],{duration:dur,delay:del,easing:'cubic-bezier(.5,0,.9,.55)',fill:'both'});
+    }
+    glow.animate([{opacity:1,offset:0},{opacity:1,offset:.5},{opacity:0,offset:1}],{duration:end+300,easing:'ease-out',fill:'both'});
+    timer=setTimeout(()=>{o.remove()},end+500);
+  }
+  window.batBurst=burst;
+  const h=document.querySelector('.top h1');if(h)h.addEventListener('click',burst);
+  burst();
+})();
 {const v=document.documentElement.dataset.ver||'V01';$('#ver').textContent=v;document.title='Device FU '+v}
 (function(){const box=$('#lights');if(!box||document.documentElement.dataset.theme!=='loykrathong')return;
   const LAN='<svg viewBox="0 0 40 60"><rect x="14" y="2" width="12" height="5" rx="2" fill="#7a4310"/><path d="M9 10Q20 4 31 10L35 44Q20 52 5 44Z" fill="#ffb43a"/><path d="M20 6V48M13 8L10 46M27 8L30 46" stroke="#e07d10" stroke-width="1" fill="none" opacity=".6"/><rect x="12" y="46" width="16" height="4" rx="1.5" fill="#7a4310"/><ellipse cx="20" cy="40" rx="4" ry="6" fill="#fff3b8" opacity=".9"/></svg>';

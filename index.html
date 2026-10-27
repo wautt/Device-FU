@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<script>(function(){try{var PIN="halloween",q=new URLSearchParams(location.search).get("theme"),d=new Date(),k=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate(),t=PIN||q||(k<=20261031?"halloween":""),h=document.documentElement;h.setAttribute("data-ver",{halloween:"V01.2",loykrathong:"V01.3"}[t]||"V01");if(t&&t!=="default")h.setAttribute("data-theme",t)}catch(e){}})()</script>
-<title>CARELINK F/U report</title>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<script>(function(){try{var PIN="default",q=new URLSearchParams(location.search).get("theme"),d=new Date(),k=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate(),t=PIN||q||(k<=20261031?"halloween":""),h=document.documentElement;h.setAttribute("data-ver",{halloween:"V01.2",loykrathong:"V01.3"}[t]||"V01");if(t&&t!=="default")h.setAttribute("data-theme",t)}catch(e){}})()</script>
+<title>Device FU V01</title>
 <style>
 :root{--bg:#eef3f9;--card:#fff;--tx:#0b1f3a;--mu:#5a6b82;--bd:#d3deeb;--fl:#f5f8fc;--ac:#004b87;--hd:#004b87;--acs:#e5eef8;--acx:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1322;--card:#14203a;--tx:#e6edf7;--mu:#97a6bd;--bd:#273857;--fl:#0e1829;--ac:#6fb0ff;--hd:#0a3d70;--acs:#17304f;--acx:#071425}}
@@ -55,9 +56,6 @@ table.f th{font-size:13px;color:var(--ac);font-weight:700;text-align:center;padd
 table.f td{padding:0}
 table.f th:first-child,table.f td:first-child{width:25%}
 table.f td:first-child{white-space:normal;font-size:12px;line-height:1.2;color:var(--mu);padding-right:2px;overflow-wrap:anywhere}
-table.f .two{display:flex;align-items:center;gap:1px}.table-two{}
-.two span{color:var(--mu);font-size:13px}
-table.f .two input{padding:8px 0}
 table.f input{text-align:center;padding:8px 1px;min-height:40px;min-width:0;text-overflow:ellipsis}
 .sub td{overflow:visible}
 .sub td{padding-top:12px!important;font-weight:700;color:var(--tx)!important;font-size:13px!important}
@@ -109,7 +107,7 @@ input,textarea,select{font-size:16px!important}
 .bat svg{display:block;width:100%;height:auto;fill:#a577e6;opacity:.6;animation:batflap .42s ease-in-out infinite alternate;transform-origin:50% 40%}
 .bat.l i{transform:scaleX(-1)}
 @keyframes batfly{from{transform:translate3d(-14vw,0,0)}to{transform:translate3d(114vw,0,0)}}
-@keyframes batbob{from{transform:translate3d(0,-7px,0) rotate(-4deg)}to{transform:translate3d(0,7px,0) rotate(4deg)}}
+@keyframes batbob{from{transform:translate3d(0,-16px,0) rotate(-5deg)}to{transform:translate3d(0,16px,0) rotate(5deg)}}
 @keyframes batflap{from{transform:scaleY(1)}to{transform:scaleY(.5)}}
 @media (prefers-reduced-motion:reduce){[data-theme="halloween"] #bats{display:none}}
 
@@ -123,8 +121,7 @@ input,textarea,select{font-size:16px!important}
 [data-theme="loykrathong"] h1::before{content:"🪷 "}
 [data-theme="loykrathong"] body{background:linear-gradient(180deg,#06142a 0,#081b36 60%,#0a2442 100%) fixed}
 #lights{display:none}
-.top{position:relative;overflow:hidden}.top .in{position:relative;z-index:1}
-[data-theme="loykrathong"] #lights{display:block;position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+[data-theme="loykrathong"] #lights{display:block;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:4}
 .lan{position:absolute;top:100%;will-change:transform;animation:lanrise linear infinite}
 .lan i{display:block;animation:lansway ease-in-out infinite alternate;position:relative}
 .lan i::before{content:"";position:absolute;left:50%;top:50%;width:260%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,180,58,.28),rgba(255,180,58,0) 62%)}
@@ -133,33 +130,17 @@ input,textarea,select{font-size:16px!important}
 .kra i{display:block;animation:krabob ease-in-out infinite alternate;position:relative}
 .kra i::before{content:"";position:absolute;left:50%;top:10%;width:200%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,200,90,.3),rgba(255,200,90,0) 60%)}
 .kra svg{display:block;width:100%;height:auto;position:relative}
-@keyframes lanrise{0%{transform:translate3d(0,0,0);opacity:0}12%{opacity:.9}80%{opacity:.9}100%{transform:translate3d(0,-110px,0);opacity:0}}
+@keyframes lanrise{0%{transform:translate3d(0,0,0);opacity:0}8%{opacity:.95}85%{opacity:.95}100%{transform:translate3d(0,-125vh,0);opacity:0}}
 @keyframes lansway{from{transform:translate3d(-16px,0,0) rotate(-4deg)}to{transform:translate3d(16px,0,0) rotate(4deg)}}
 @keyframes krafloat{from{transform:translate3d(-16vw,0,0)}to{transform:translate3d(116vw,0,0)}}
 @keyframes krabob{from{transform:translate3d(0,-3px,0) rotate(-2deg)}to{transform:translate3d(0,3px,0) rotate(2deg)}}
 @media (prefers-reduced-motion:reduce){[data-theme="loykrathong"] #lights{display:none}}
-
-/* ---------- Halloween hero header ---------- */
-#moon,#pump{display:none}
-[data-theme="halloween"] .top{background:linear-gradient(180deg,#3d3156 0,#241638 22%,#1a0d2b 100%);border-bottom:3px solid #ff8a1f}
-[data-theme="halloween"] #bats{position:absolute;z-index:0}
-[data-theme="halloween"] .bat svg{fill:#9d82cc;opacity:.85}
-[data-theme="halloween"] .top .in{min-height:184px;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding-bottom:20px}
-[data-theme="halloween"] .top h1{flex:none;font-size:27px;line-height:1.15;color:#ffa650;text-shadow:0 0 16px rgba(255,138,31,.5);letter-spacing:.2px}
-[data-theme="halloween"] h1::before{content:none}
-[data-theme="halloween"] .ver{display:block;margin:7px 0 0;padding:0;background:none;border-radius:0;font-size:18px;font-weight:600;letter-spacing:0;color:#ffc47c;text-shadow:none}
-[data-theme="halloween"] .ver::after{content:" 🎃 Halloween"}
-[data-theme="halloween"] .top button.q{position:absolute;right:16px;top:14px;color:#ffd9ad;border-color:rgba(255,196,124,.45);background:rgba(255,255,255,.06)}
-[data-theme="halloween"] #moon{display:block;position:absolute;width:26px;height:26px;border-radius:50%;left:60%;top:24%;background:#f3e6b8;box-shadow:0 0 18px 4px rgba(243,230,184,.4)}
-[data-theme="halloween"] #pump{display:block;position:absolute;right:18px;bottom:18px;width:46px}
-[data-theme="halloween"] #pump::before{content:"";position:absolute;left:50%;top:55%;width:190%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,138,31,.38),rgba(255,138,31,0) 62%)}
-[data-theme="halloween"] #pump svg{display:block;position:relative;width:100%;height:auto}
-@media (max-width:420px){[data-theme="halloween"] .top h1{font-size:25px}[data-theme="halloween"] .ver{font-size:17px}[data-theme="halloween"] #moon{left:58%}}
-@media (max-width:380px){[data-theme="halloween"] .top h1{font-size:22px}[data-theme="halloween"] .ver{font-size:16px}[data-theme="halloween"] #pump{width:40px;right:14px}}
+.top h1 .ver{display:table;margin:4px 0 0!important}
 </style>
 </head>
 <body>
-<header class="top"><div id="lights" aria-hidden="true"></div><div id="bats" aria-hidden="true"></div><div class="in"><div id="moon" aria-hidden="true"></div><div id="pump" aria-hidden="true"><svg viewBox="0 0 66 64"><path d="M33 15c0-6 3-10 8-11" stroke="#4f7d2f" stroke-width="4.5" fill="none" stroke-linecap="round"/><ellipse cx="16" cy="39" rx="15" ry="21" fill="#d96a28"/><ellipse cx="50" cy="39" rx="15" ry="21" fill="#d96a28"/><ellipse cx="33" cy="39" rx="19" ry="23" fill="#f28a3b"/><path d="M19 33l7-8 7 8zM33 33l7-8 7 8z" fill="#2b1206"/><path d="M18 43Q33 58 48 43L43 43 40 47 36 43 30 43 26 47 23 43Z" fill="#2b1206"/></svg></div><h1>CARELINK F/U report<span class="ver" id="ver"></span></h1><button class="q" id="clr">ล้างค่า</button></div></header>
+<div id="bats" aria-hidden="true"></div><div id="lights" aria-hidden="true"></div>
+<header class="top"><div class="in"><h1>Device FU<span class="ver" id="ver"></span></h1><button class="q" id="clr">Clear all</button></div></header>
 <div class="wrap">
 <main>
 
@@ -178,6 +159,7 @@ input,textarea,select{font-size:16px!important}
       <button type="button" id="ltBtn" class="sym" title="ใส่ &lt; หน้าตัวเลข">&lt;</button>
     </div></div>
   </div>
+  <label style="display:flex;align-items:center;gap:10px;margin:14px 0 0;font-size:15px;color:var(--tx);cursor:pointer"><input type="checkbox" data-k="initchk" style="width:24px;height:24px;min-height:0;padding:0;flex:0 0 24px;accent-color:var(--ac)">Initializing</label>
   <div class="chips" style="margin-top:12px">
     <label class="chip"><input type="checkbox" data-k="minchk">Min</label>
     <label class="chip"><input type="checkbox" data-k="lowchk">Low battery</label>
@@ -223,26 +205,20 @@ input,textarea,select{font-size:16px!important}
       <input id="lvn1" data-k="lvvecn1" placeholder="เลข 1" inputmode="numeric" style="flex:1">
       <input id="lvn2" data-k="lvvecn2" placeholder="เลข 2" inputmode="numeric" style="flex:1">
     </div></div>
-    <div><label>V-V Timing</label><div class="row">
+    <div id="vvWrap"><label>V-V Timing</label><div class="row">
       <select data-k="vvdir" style="flex:1"><option>LV→RV</option><option>RV→LV</option></select>
       <div class="ui" style="flex:0 0 96px"><input data-k="vvms" inputmode="decimal"><b>ms</b></div>
     </div></div>
   </div>
 </section>
 
-<section class="sec"><h2>Detection zone <small>แตะ zone ที่เปิดใช้</small></h2><div id="dzs"></div>
-  <div style="margin-top:14px"><label>Discrimination</label><input data-k="disc" placeholder="พิมพ์ข้อความ"></div></section>
+<section class="sec"><h2>Detection zone <small>แตะ zone ที่เปิดใช้</small></h2><div id="dzs"></div></section>
 
 <section class="sec"><h2>Episodes/Note</h2>
   <label>Note</label>
   <div class="chips" style="margin-bottom:10px"><label class="chip"><input type="checkbox" data-k="noep">No episode</label><label class="chip"><input type="checkbox" data-k="goodp">Good parameters</label></div>
   <textarea data-k="notes" rows="3" placeholder="พิมพ์ข้อความ (ถ้ามี)"></textarea>
   <div style="margin-top:14px"><label>Next follow up</label><input type="date" data-k="nextfu"></div></section>
-
-<section class="sec"><h2>Events (Quick guide) <small>แตะชนิดที่พบ แล้วกรอกเฉพาะที่มีข้อมูล</small></h2>
-  <div class="chips" id="evchips"></div>
-  <div id="evs"></div>
-</section>
 
 <div id="mbar"><button class="p" id="mpdf">Export PDF</button><button id="mprev">ดูใบรายงาน</button></div>
 </main>
@@ -265,10 +241,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const V={};
 const pt=[['name','ชื่อ-นามสกุล','full'],['hn','HN'],['fu','Follow-up date','date']];
-const dev=[['model','Model'],['doi','DOI (วันที่ใส่)','date'],['mode','Mode'],['rate','Rate','','ppm','']];
-const EV=['VF','FVT','VT','NS-VT','SVT','AT','AF'];
-const evk=e=>e.replace('-','');
-const PCT=['AT','AF'];
+const dev=[['model','Model'],['doi','DOI (วันที่ใส่)','date'],['mode','Mode'],['rate','Rate','','ppm','text']];
 const DZ=[['VF','VF'],['FVT','FVT'],['VT','VT'],['VTM','VT Monitor']];
 const RXN=6,RXT=['J','ATP'],ATP=['Burst','Ramp','Burst+','Ramp+'];
 const setK=(k,v)=>{V[k]=v;const el=document.querySelector(`[data-k="${k}"]`);if(el)el.value=v};
@@ -284,12 +257,13 @@ const meas2=[['thr2','Threshold 2 (V)'],['thrms2','at 2 (ms)']];
 const set=[['amp','Amplitude (V)'],['pw','Pulse width (ms)'],['sens','Sensitivity (mV)']];
 const measDesc=meas.map(([k,l])=>({k,l:RL[k]||l,get:c=>{
   let v=V[k+'_'+c]||'';
+  if(k==='defib'&&c==='RV'){const v2=V.defib2_RV||'';if(v2)v=v?v+'/'+v2:v2}
   if(V.thr2chk){const k2=k==='thr'?'thr2':k==='thrms'?'thrms2':null;if(k2){const v2=V[k2+'_'+c]||'';if(v2)v=v?v+'/'+v2:v2}}
-  if(k==='defib'&&c==='RV'&&V.defib2_RV)v=v?v+'/'+V.defib2_RV:V.defib2_RV;
   return v;
 }}));
 const setDesc=set.map(([k,l])=>({k,l:RL[k]||l,get:c=>V[k+'_'+c]||''}));
-const descRows=desc=>desc.map(d=>`<tr><td class="l">${d.l}</td>${C.map(c=>{const v=d.get(c);return `<td>${v?esc(v):''}</td>`}).join('')}</tr>`).join('');
+const cellFs=v=>{const n=String(v||'').length;return n>8?Math.max(7,Math.min(12,Math.round(62/(n*0.6)*10)/10)):0};
+const descRows=desc=>desc.map(d=>`<tr><td class="l">${d.l}</td>${C.map(c=>{const v=d.get(c),f=cellFs(v);return `<td${f?` style="font-size:${f}px;white-space:nowrap"`:''}>${v?esc(v):'-'}</td>`}).join('')}</tr>`).join('');
 const VEC_TPL={'LV to LV':'LV{1} to LV{2}','LV to RVcoil':'LV{1} to RVcoil'};
 const VEC_BLANKS={'LV to LV':2,'LV to RVcoil':1};
 function lvVecText(){const opt=V.lvvecopt||'';if(!opt)return'';const tpl=VEC_TPL[opt];if(!tpl)return opt;return tpl.replace('{1}',gv('lvvecn1')||'_').replace('{2}',gv('lvvecn2')||'_')}
@@ -298,22 +272,14 @@ const lvLine=t=>`<tr><td colspan="4" style="border:0;text-align:right;font-weigh
 function lvVecRows(){
   if(!V.lvvecchk)return'';
   const vt=lvVecText();
-  const timing=(V.vvdir||V.vvms)?(esc(V.vvdir||'LV→RV')+' '+gv('vvms')+' ms'):'';
+  const timing=V.lvvecopt!=='LVtip to LVring'&&(V.vvdir||V.vvms)?(esc(V.vvdir||'LV→RV')+' '+gv('vvms')+' ms'):'';
   return (vt?lvLine(vt):'')+(timing?lvLine(timing):'');
 }
 const fld=([k,l,t,u,im])=>`<div${t==='full'?' class="full"':''}><label>${l}</label>${u?`<div class="ui"><input data-k="${k}"${im?` inputmode="${im}"`:''}><b>${u}</b></div>`:`<input data-k="${k}" type="${t&&t!=='full'?t:'text'}"${im?` inputmode="${im}"`:''}>`}</div>`;
 $('#pt').innerHTML=pt.map(fld).join('');
 const DT=['Pacemaker','ICD','CRT','CRT-D'];
-$('#dev').innerHTML=`<div class="full"><label>ชนิดอุปกรณ์</label><div class="seg" id="dseg">${DT.map(d=>`<button type="button" data-d="${d}">${d}</button>`).join('')}<button type="button" data-d="other">อื่นๆ</button></div><select data-k="dtype" hidden><option value=""></option>${DT.map(d=>`<option>${d}</option>`).join('')}<option value="other">other</option></select><input id="dother" data-k="dother" placeholder="ระบุชนิดอุปกรณ์" style="display:none;margin-top:8px"></div>`+dev.map(fld).join('')+`<div class="full"><label>Charge time</label><div class="row"><div class="ui" style="flex:1"><input data-k="chgs" inputmode="decimal"><b>Sec</b></div><span style="color:var(--mu)">@</span><div class="ui" style="flex:1"><input data-k="chgj" inputmode="decimal"><b>J</b></div></div></div>`;
+$('#dev').innerHTML=`<div class="full"><label>ชนิดอุปกรณ์</label><div class="seg" id="dseg">${DT.map(d=>`<button type="button" data-d="${d}">${d}</button>`).join('')}<button type="button" data-d="other">อื่นๆ</button></div><select data-k="dtype" hidden><option value=""></option>${DT.map(d=>`<option>${d}</option>`).join('')}<option value="other">other</option></select><input id="dother" data-k="dother" placeholder="ระบุชนิดอุปกรณ์" style="display:none;margin-top:8px"></div>`+dev.map(fld).join('')+`<div class="full"><label>Charge time</label><div class="row"><div class="ui" style="flex:1"><input data-k="chgs" inputmode="decimal"><b>Sec</b></div><span style="color:var(--mu)">@</span><div class="ui" style="flex:1"><input data-k="chgj" inputmode="text"><b>J</b></div></div></div>`;
 $('#dseg').onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset.d;V.dtype=V.dtype===d?'':d;$('[data-k="dtype"]').value=V.dtype;render();if(V.dtype==='other')$('#dother').focus()};
-$('#evchips').innerHTML=EV.map(e=>`<label class="chip"><input type="checkbox" data-k="ev_${evk(e)}">${e}</label>`).join('');
-$('#evs').innerHTML=EV.map(e=>{const k=evk(e);return `<div class="evp" id="evw_${k}"><h3>${e}</h3><div class="g">
-${PCT.includes(e)?`<div><label>% of ${e}</label><div class="ui"><input data-k="evp_${k}" inputmode="decimal"><b>%</b></div></div>`:''}
-<div><label>จำนวน (of ${e} episodes)</label><input data-k="evn_${k}" inputmode="numeric"></div>
-<div style="grid-column:1/-1"><label>Longest</label><div class="row"><input data-k="evl_${k}" inputmode="decimal" style="flex:1"><select data-k="evu_${k}" style="flex:0 0 96px"><option>min</option><option>sec</option><option>Hrs</option></select></div></div>
-<div><label>Last on</label><input type="date" data-k="evd_${k}"></div>
-<div><label>V rate during episode(s)</label><div class="ui"><input data-k="evr_${k}" inputmode="numeric"><b>bpm</b></div></div>
-</div></div>`}).join('');
 $('#dzs').innerHTML=DZ.map(([z,n])=>`<div class="dzb"><label class="chip"><input type="checkbox" data-k="dz_${z}">${n}</label><div class="dzw" id="dzw_${z}">
 <div class="row">${seg('dzo_'+z,['On','Off'])}<div class="ui" style="flex:1"><input data-k="dzr_${z}" placeholder="เช่น 200-250"><b>bpm</b></div></div>
 ${z==='VTM'?'':Array.from({length:RXN},(_,j)=>{const i=j+1;return `<div class="rx"><span class="rxn">RX${i}</span>${seg(`dzt_${z}_${i}`,RXT)}<div class="ui"><input data-k="dzv_${z}_${i}" inputmode="decimal"><b id="rxu_${z}_${i}"></b></div>
@@ -325,8 +291,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   if(b.dataset.q40){const z=b.dataset.q40;for(let i=1;i<=RXN;i++){V[`dzt_${z}_${i}`]='J';V[`dza_${z}_${i}`]='';setK(`dzv_${z}_${i}`,'40')}render();return}
   if(b.dataset.qfill){const z=b.dataset.qfill;for(let i=2;i<=RXN;i++){V[`dzt_${z}_${i}`]=V[`dzt_${z}_1`]||'';V[`dza_${z}_${i}`]=V[`dza_${z}_1`]||'';setK(`dzv_${z}_${i}`,V[`dzv_${z}_1`]||'')}render();return}
 });
-const row=(([k,l],cls)=>`<tr${cls?` class="${cls}"`:''}><td>${l}</td>${C.map(c=>k==='defib'&&c==='RV'?`<td><div class="two"><input data-k="defib_RV" inputmode="decimal"><span>/</span><input data-k="defib2_RV" inputmode="decimal"></div></td>`:`<td><input data-k="${k}_${c}" inputmode="decimal"></td>`).join('')}</tr>`);
-const _rt=document.querySelector('[data-k="rate"]');if(_rt)_rt.placeholder='เช่น 60-130';
+const row=(([k,l],cls)=>`<tr${cls?` class="${cls}"`:''}><td>${l}</td>${C.map(c=>`<td>${k==='defib'&&c==='RV'?'<div style="display:flex;gap:2px"><input data-k="defib_RV" inputmode="decimal"><input data-k="defib2_RV" inputmode="decimal"></div>':`<input data-k="${k}_${c}" inputmode="${k==='sense'?'text':'decimal'}"${k==='sense'?' enterkeyhint="next" autocapitalize="off" autocomplete="off"':''}>`}</td>`).join('')}</tr>`);
 const mainRows=meas.map(m=>row(m)+(m[0]==='thrms'?meas2.map(m2=>row(m2,'x2')).join(''):'')).join('');
 $('#tbl').innerHTML=`<tr><th></th>${C.map(c=>`<th>${c}</th>`).join('')}</tr>`+mainRows+`<tr class="sub"><td colspan="4">Setting</td></tr>`+set.map(m=>row(m)).join('');
 const fd=v=>{if(!v)return'';const d=new Date(v);return isNaN(d)?v:d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})};
@@ -337,47 +302,34 @@ function tbl(list){
   return `<table><tr><th></th>${cs.map(c=>`<th>${c}</th>`).join('')}</tr>`+
    list.filter(([k])=>cs.some(c=>V[k+'_'+c])).map(([k,l])=>`<tr><td>${l}</td>${cs.map(c=>`<td>${esc(V[k+'_'+c])||'-'}</td>`).join('')}</tr>`).join('')+`</table>`;
 }
-const DOC_CSS='.doc{font:12px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Sukhumvit Set",Thonburi,Sarabun,"Noto Sans Thai",system-ui,sans-serif;color:#1e3a8a;background:#fff;width:300px;max-width:100%;margin:0 auto}.doc .pt{font-size:11px;color:#111;display:flex;flex-direction:column;gap:1px;margin:0 0 5px 4px}.doc .rt{font-weight:700;font-size:13px;color:#111;text-align:center;margin:0 0 6px}.doc .rh{font-weight:700;color:#111;margin:0 0 3px 4px;min-height:15px}.doc .st{border:2px solid #1e3a8a;padding:5px 6px}.doc .hd{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;gap:8px}.doc .lg{font-weight:800;font-size:16px;letter-spacing:-.3px}.doc .ttl{font-weight:600;border-bottom:1px solid #1e3a8a;margin:3px 0 4px;padding-bottom:1px}.doc .ln{display:flex;gap:8px;margin:3px 0}.doc .ln>span{flex:1;display:flex;gap:4px;align-items:baseline;white-space:nowrap}.doc .u{flex:1;min-width:0;border-bottom:1px solid #1e3a8a;color:#111;font-weight:600;font-style:normal;text-align:center;min-height:15px}.doc table{width:100%;border-collapse:separate;border-spacing:3px 2px;margin:3px 0 0}.doc th{font-weight:400;text-align:center}.doc td{border-bottom:1px solid #1e3a8a;text-align:center;color:#111;font-weight:600;height:17px;padding:0}.doc th.l,.doc td.l{text-align:left;border:0;font-weight:400;color:#1e3a8a;white-space:nowrap;width:1%}.doc td.sh{text-align:left;border:0;font-weight:600;padding-top:4px}.doc .u.uf{flex:0 0 auto;min-width:18px;padding:0 3px}.doc table.dzt{margin-top:8px;border-spacing:0;table-layout:fixed}.doc .dzt th{text-align:left;font-weight:700;color:#111;font-size:9.5px;padding:0 4px 2px 0;white-space:nowrap}.doc .dzt .bu{font-weight:400;font-size:7px}.doc .dzt td{border:0;height:auto;text-align:left;vertical-align:middle;font-weight:400;font-size:10.5px;padding:1px 4px 1px 0;white-space:nowrap;overflow:hidden}.doc .dzt td.zn{font-weight:700;font-size:11.5px}.doc .dc{display:flex;gap:4px;align-items:baseline;margin:6px 0 0}.doc .dc .u{font-weight:600}.doc .nt b{font-weight:700}.doc .k{color:#111;font-weight:600}.doc .nt{display:none}.doc .pi{margin:0 0 7px;padding:0 1px 5px;border-bottom:1px solid #cdd5e4}.doc .kv{display:flex;gap:5px;align-items:baseline;margin:2px 0;font-size:11.5px;line-height:1.4}.doc .kv .k{color:#1e3a8a;font-weight:400;white-space:nowrap;flex:0 0 auto}.doc .kv .v{flex:1;min-width:0;color:#111;font-weight:600;overflow-wrap:anywhere;white-space:pre-wrap}.doc .kv .hnv{flex:0 1 auto;max-width:45%}.doc .ft{margin-top:8px;padding:7px 1px 0;border-top:1px solid #cdd5e4}.doc .ft>*+*{margin-top:6px}.doc .evo{margin:0}.doc .evt{font-weight:700;color:#111;font-size:11.5px;margin:0 0 3px}.doc .evi{display:flex;gap:7px;margin:0 0 3px;line-height:1.45;align-items:baseline}.doc .evn{flex:0 0 40px;font-weight:800;color:#111;font-size:12px}.doc .evx{flex:1;min-width:0;font-size:11px;color:#1e3a8a}.doc .vb{color:#111;font-weight:700;white-space:nowrap}';
+const DOC_CSS='.doc{font:12px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Sukhumvit Set",Thonburi,Sarabun,"Noto Sans Thai",system-ui,sans-serif;color:#1e3a8a;background:#fff;width:300px;max-width:100%;margin:0 auto}.doc .pt{font-size:11px;color:#111;display:flex;flex-direction:column;gap:1px;margin:0 0 5px 4px}.doc .rt{font-weight:700;font-size:13px;color:#111;text-align:center;margin:0 0 6px}.doc .rh{font-weight:700;color:#111;margin:0 0 3px 4px;min-height:15px}.doc .st{border:2px solid #1e3a8a;padding:5px 6px}.doc .hd{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;gap:8px}.doc .lg{font-weight:800;font-size:16px;letter-spacing:-.3px}.doc .ttl{font-weight:600;border-bottom:1px solid #1e3a8a;margin:3px 0 4px;padding-bottom:1px}.doc .ln{display:flex;gap:8px;margin:3px 0}.doc .ln>span{flex:1;display:flex;gap:4px;align-items:baseline;white-space:nowrap}.doc .u{flex:1;min-width:0;border-bottom:1px solid #1e3a8a;color:#111;font-weight:600;font-style:normal;text-align:center;min-height:15px}.doc table{width:100%;border-collapse:separate;border-spacing:3px 2px;margin:3px 0 0}.doc th{font-weight:400;text-align:center}.doc td{border-bottom:1px solid #1e3a8a;text-align:center;color:#111;font-weight:600;height:17px;padding:0}.doc th.l,.doc td.l{text-align:left;border:0;font-weight:400;color:#1e3a8a;white-space:nowrap;width:1%}.doc td.sh{text-align:left;border:0;font-weight:600;padding-top:4px}.doc .u.uf{flex:0 0 auto;min-width:18px;padding:0 3px}.doc .evo{margin:6px 4px 0}.doc .evi{margin:0 0 3px;line-height:1.6}.doc .evi .u.uf{display:inline-block;min-width:16px;line-height:1.2}.doc table.dzt{margin-top:8px;border-spacing:0;table-layout:fixed}.doc .dzt th{text-align:left;font-weight:700;color:#111;font-size:9.5px;padding:0 4px 2px 0;white-space:nowrap}.doc .dzt .bu{font-weight:400;font-size:7px}.doc .dzt td{border:0;height:auto;text-align:left;vertical-align:middle;font-weight:400;font-size:10.5px;padding:1px 4px 1px 0;white-space:nowrap;overflow:hidden}.doc .dzt td.zn{font-weight:700;font-size:11.5px}.doc .dc{display:flex;gap:4px;align-items:baseline;margin:6px 0 0}.doc .dc .u{font-weight:600}.doc .nt b{font-weight:700}.doc .evn{font-weight:800;color:#111;font-size:13px}.doc .evt{font-weight:700;color:#111;margin-bottom:2px}.doc .k{color:#111;font-weight:600}.doc .nt{color:#111;font-weight:600;margin:5px 0 0 4px;white-space:pre-wrap}';
 {const st=document.createElement('style');st.textContent=DOC_CSS;document.head.appendChild(st)}
 const repTitle=()=>V.dtype==='Pacemaker'||V.dtype==='CRT'?'ใบรายงานผลการเช็คเครื่องกระตุ้นหัวใจ':V.dtype==='ICD'||V.dtype==='CRT-D'?'ใบรายงานผลการเช็คเครื่องกระตุกหัวใจ':'';
 const devType=()=>V.dtype==='other'?(V.dother||'อื่นๆ'):(V.dtype||'');
 const gv=k=>V[k]?esc(V[k]):'';
 const gdv=k=>V[k]?esc(fd(V[k])):'';
-const U=v=>`<i class="u">${v}</i>`;
+const U=v=>`<i class="u">${v||'-'}</i>`;
 const mrows=list=>list.map(([k,l])=>`<tr><td class="l">${RL[k]||l}</td>${C.map(c=>`<td>${gv(k+'_'+c)}</td>`).join('')}</tr>`).join('');
 const colHead=c=>c+(c==='A'&&V.bbap_A?' (BBaP)':'')+(c==='RV'&&V.lbbap_RV?' (LBBaP)':'')+(c==='LV'&&V.lbbap_LV?' (LBBaP)':'');
-const evOn=()=>EV.filter(e=>V['ev_'+evk(e)]);
-const epw=v=>parseFloat(String(v||'').replace(/[^0-9.]/g,''))>1?'episodes':'episode';
-const UF=v=>`<i class="u uf">${v}</i>`;
-function evSegs(e,w){const k=evk(e),g=x=>V[x+k]||'',ep=epw(V['evn_'+k]),o=[];
-  if(PCT.includes(e)&&g('evp_'))o.push(`${w(g('evp_'))}% of ${e}`);
-  if(g('evn_'))o.push(`${w(g('evn_'))} of ${e} ${ep}`);
-  if(g('evl_')){let u=g('evu_')||'min';if(u==='Hrs'&&parseFloat(g('evl_'))===1)u='Hr';o.push(`Longest ${w(g('evl_'))} ${u}`)}
-  if(g('evd_'))o.push(`Last on ${w(fd(g('evd_')))}`);
-  if(g('evr_'))o.push(`V rate during ${ep} ${w(g('evr_'))} bpm`);
-  return o}
 function dzRep(){const on=dzOn();if(!on.length)return'';
   return `<table class="dzt"><colgroup><col style="width:28px"><col style="width:26px"><col style="width:50px"><col></colgroup><tr><th colspan="2">Detection</th><th>Rates<span class="bu"> bpm</span></th><th>Therapies</th></tr>${on.map(([z])=>{const t=dzRows(z);let txt=t.join(', ');
   const fit=x=>Math.floor(1780/Math.max(1,x.length)/6.0*10)/10;
   if(fit(txt)<9)txt=t.join(',');
   const fs=Math.max(5.5,Math.min(10.5,fit(txt)));
   return `<tr><td class="zn">${z}</td><td>${gv('dzo_'+z)||'-'}</td><td>${V['dzr_'+z]?gv('dzr_'+z):'-'}</td><td class="th" style="font-size:${fs}px">${txt?esc(txt):'-'}</td></tr>`}).join('')}</table>`}
-function evRep(){const on=evOn();if(!on.length)return'';let h='<div class="evo"><div class="evt">Event</div>';
-  on.forEach(e=>{h+=`<div class="evi"><b class="evn">${e}</b><span class="evx">${evSegs(e,v=>`<b class="vb">${esc(v)}</b>`).join(', ').replace(/<\/b> (bpm|sec|min|Hrs?)/g,'</b>&nbsp;$1')||'&nbsp;'}</span></div>`});return h+'</div>'}
-const ftRep=()=>{const ev=evRep(),n=noteTxt();if(!ev&&!n&&!V.nextfu)return'';
-  return `<div class="ft">${ev}${n?`<div class="kv"><span class="k">Note:</span><span class="v">${esc(n)}</span></div>`:''}${V.nextfu?`<div class="kv"><span class="k">Next follow up:</span><span class="v">${gdv('nextfu')}</span></div>`:''}</div>`}
 const noteTxt=()=>[V.noep?'No episode':'',V.goodp?'Good parameters':'',V.notes||''].filter(Boolean).join('\n');
-const discRep=()=>V.disc?`<div class="dc"><span>Discrimination</span><i class="u" style="white-space:normal;text-align:left">${gv('disc')}</i></div>`:'';
+const discRep=()=>`<div class="dc"><span>Discrimination</span><i class="u" style="white-space:normal;text-align:left">${gv('disc')||'-'}</i></div>`;
 function body(){
-  return `<div class="doc">${repTitle()?`<div class="rt">${repTitle()}</div>`:''}${(V.name||V.hn||V.rhythm)?`<div class="pi">${(V.name||V.hn)?`<div class="kv">${V.name?`<span class="k">ชื่อ:</span><span class="v">${gv('name')}</span>`:''}${V.hn?`<span class="k">HN:</span><span class="v hnv">${gv('hn')}</span>`:''}</div>`:''}${V.rhythm?`<div class="kv"><span class="k">Present rhythm:</span><span class="v">${gv('rhythm')}</span></div>`:''}</div>`:''}
+  return `<div class="doc">${repTitle()?`<div class="rt">${repTitle()}</div>`:''}<div class="pt"><span>ชื่อ ${gv('name')||'-'}</span><span>HN ${gv('hn')||'-'}</span></div><div class="rh">Present rhythm: ${gv('rhythm')||'-'}</div>
 <div class="st"><div class="hd"><span class="lg">Medtronic</span><span style="display:flex;gap:4px;flex:1;max-width:60%">Follow up date ${U(gdv('fu'))}</span></div>
 <div class="ttl">${esc(devType()||'Pacemaker / ICD / CRT / CRT-D')} F/U</div>
 <div class="ln"><span>Model ${U(gv('model'))}</span><span>DOI ${U(gdv('doi'))}</span></div>
 <div class="ln"><span>Mode ${U(gv('mode'))}</span><span>Rate ${U(gv('rate'))} ppm</span></div>
-<div class="ln"><span>Battery ${U(gv('batt'))} V${V.lowchk&&V.lowohm?`, <b class="k">${gv('lowohm')}</b> ohms`:''}</span><span>Est. ${U(gv('est'))} ${unitWord(V.estunit,V.est)}</span></div>
+<div class="ln"><span>Battery ${U(gv('batt'))} V${V.lowchk&&V.lowohm?`, <b class="k">${gv('lowohm')}</b> ohms`:''}</span><span>Est. ${V.initchk?U('Initializing'):U(gv('est'))+(V.est?' '+unitWord(V.estunit,V.est):'')}</span></div>
 ${(V.lowchk&&V.rrt)||(V.minchk&&V.minval)?`<div class="ln"><span>${V.lowchk&&V.rrt?`RRT ${U(gv('rrt'))} V`:''}</span><span>${V.minchk&&V.minval?`Min ${U(gv('minval'))} ${unitWord(V.minunit,V.minval)}`:''}</span></div>`:''}
-<div class="ln"><span style="flex:0 0 auto">Charge time <i class="u uf">${gv('chgs')}</i> Sec @ <i class="u uf">${gv('chgj')}</i> J</span></div>
-<table><tr><th class="l">Chamber</th>${C.map(c=>`<th>${colHead(c)}</th>`).join('')}</tr>${descRows(measDesc)}${lvVecRows()}<tr><td class="sh" colspan="4">Setting</td></tr>${descRows(setDesc)}</table>${dzRep()}${discRep()}</div>${ftRep()}</div>`;
+<div class="ln"><span style="flex:0 0 auto">Charge time <i class="u uf">${gv('chgs')||'-'}</i> Sec @ <i class="u uf">${gv('chgj')||'-'}</i> J</span></div>
+<table><tr><th class="l">Chamber</th>${C.map(c=>`<th>${colHead(c)}</th>`).join('')}</tr>${descRows(measDesc)}${lvVecRows()}<tr><td class="sh" colspan="4">Setting</td></tr>${descRows(setDesc)}</table>${dzRep()}</div>
+<div class="nt"><b>Note:</b> ${esc(noteTxt())||'-'}</div><div class="nt"><b>Next follow up:</b> ${gdv('nextfu')||'-'}</div></div>`;
 }
 let _pt=0,_last='';
 const preview=()=>{_pt=0;const h=body();if(h!==_last){_last=h;$('#rep').innerHTML=h}};
@@ -387,12 +339,12 @@ const render=()=>{
   $('#minWrap').style.display=V.minchk?'':'none';
 
   $('#lowWrap').style.display=V.lowchk?'':'none';
-  EV.forEach(e=>{$('#evw_'+evk(e)).style.display=V['ev_'+evk(e)]?'block':'none'});
   DZ.forEach(([z])=>{$('#dzw_'+z).style.display=V['dz_'+z]?'block':'none'});
   DZ.forEach(([z])=>{if(z==='VTM')return;for(let i=1;i<=RXN;i++){const t=V[`dzt_${z}_${i}`]||'';$(`#rxu_${z}_${i}`).textContent=t==='J'?'J':'';$(`#atp_${z}_${i}`).style.display=t==='ATP'?'':'none';$(`[data-k="dzv_${z}_${i}"]`).placeholder=t==='ATP'?'จำนวน':''}});
   document.querySelectorAll('[data-set]').forEach(b=>b.classList.toggle('on',V[b.dataset.set]===b.dataset.val));
   document.querySelectorAll('#dseg button').forEach(b=>b.classList.toggle('on',b.dataset.d===V.dtype));
   $('#lvvecWrap').style.display=V.lvvecchk?'':'none';
+  $('#vvWrap').style.display=V.lvvecopt==='LVtip to LVring'?'none':'';
   document.querySelectorAll('#tbl tr.x2').forEach(tr=>tr.style.display=V.thr2chk?'':'none');
   const _u=VEC_BLANKS[V.lvvecopt]||0;
   $('#lvn1').style.display=_u>=1?'':'none';
@@ -404,7 +356,7 @@ function text(){
   p('Present rhythm','rhythm');p('Name','name');p('HN','hn');
   p('Follow-up date','fu',1);L.push('');
   if(V.dtype)L.push('Type: '+devType());p('Model','model');p('DOI','doi',1);p('Mode','mode');p('Rate (ppm)','rate');p('Battery (V)','batt');
-  if(V.est)L.push('Est. longevity: '+V.est+' '+unitWord(V.estunit,V.est));
+  if(V.initchk)L.push('Est. longevity: Initializing');else if(V.est)L.push('Est. longevity: '+V.est+' '+unitWord(V.estunit,V.est));
   if(V.minchk&&V.minval)L.push('Minimum: '+V.minval+' '+unitWord(V.minunit,V.minval));
   if(V.lowchk){if(V.lowohm)L.push('Battery impedance (ohms): '+V.lowohm);if(V.rrt)L.push('RRT (V): '+V.rrt);}
   if(V.chgs||V.chgj)L.push('Charge time: '+(V.chgs||'_')+' Sec @ '+(V.chgj||'_')+' J');
@@ -414,11 +366,9 @@ function text(){
   const td=(title,desc)=>{const cs=C.filter(c=>desc.some(d=>d.get(c)));if(!cs.length)return;L.push(title+' ['+cs.join(' / ')+']');
     desc.forEach(d=>{if(cs.some(c=>d.get(c)))L.push('  '+d.l+': '+cs.map(c=>d.get(c)||'-').join(' / '))});L.push('')};
   td('Measurements',measDesc);
-  if(V.lvvecchk){const vt=lvVecText();if(vt)L.push('LV Vector: '+vt);if(V.vvdir||V.vvms)L.push('V-V Timing: '+(V.vvdir||'LV→RV')+' '+(V.vvms||'')+' ms');L.push('')}
+  if(V.lvvecchk){const vt=lvVecText();if(vt)L.push('LV Vector: '+vt);if(V.lvvecopt!=='LVtip to LVring'&&(V.vvdir||V.vvms))L.push('V-V Timing: '+(V.vvdir||'LV→RV')+' '+(V.vvms||'')+' ms');L.push('')}
   td('Setting',setDesc);
-  if(V.disc)L.push('Discrimination: '+V.disc);
   {const on=dzOn();if(on.length){L.push('Detection zone:');on.forEach(([z])=>{const t=dzRows(z),seg=[V['dzo_'+z]||'',V['dzr_'+z]?V['dzr_'+z]+' bpm':''].filter(Boolean);if(t.length)seg.push('Therapies: '+t.join(', '));L.push('  '+z+(seg.length?': '+seg.join(', '):''))});L.push('')}}
-  {const on=evOn();if(on.length){L.push('Event:');on.forEach(e=>L.push('  '+e+': '+evSegs(e,v=>v).join(', ')));L.push('')}}
   if(noteTxt())L.push('Note: '+noteTxt());
   if(V.nextfu)L.push('Next follow up: '+fd(V.nextfu));
   return L.join('\n').trim();
@@ -480,19 +430,19 @@ $('#cp').onclick=async()=>{
   const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();
   let ok=false;try{ok=document.execCommand('copy')}catch(e){}a.remove();msg(ok?'คัดลอกแล้ว':'คัดลอกไม่ได้');
 };
-$('#clr').onclick=()=>{if(!confirm('ล้างค่าทั้งหมด?'))return;for(const k in V)delete V[k];document.querySelectorAll('[data-k]').forEach(i=>{if(i.type==='checkbox')i.checked=false;else if(i.tagName==='SELECT')i.selectedIndex=0;else i.value=''});today();render();qhint();msg('')};
+$('#clr').onclick=()=>{if(!confirm('Clear all?'))return;for(const k in V)delete V[k];document.querySelectorAll('[data-k]').forEach(i=>{if(i.type==='checkbox')i.checked=false;else if(i.tagName==='SELECT')i.selectedIndex=0;else i.value=''});today();render();qhint();msg('')};
 document.addEventListener('input',e=>{if(e.target.type==='checkbox')return;const k=e.target.dataset&&e.target.dataset.k;if(k){V[k]=e.target.value.trim();render()}});
 document.addEventListener('change',e=>{const t=e.target;if(t.type==='checkbox'&&t.dataset.k){V[t.dataset.k]=t.checked;render()}});
 $('#ltBtn').onclick=()=>{V.est=(V.est||'').startsWith('<')?(V.est||'').slice(1):'<'+(V.est||'');$('#estInp').value=V.est;render()};
 $('#gtBtn').onclick=()=>{V.lowohm=(V.lowohm||'').startsWith('>')?(V.lowohm||'').slice(1):'>'+(V.lowohm||'');$('#lowohmInp').value=V.lowohm;render()};
 $('#minLtBtn').onclick=()=>{V.minval=(V.minval||'').startsWith('<')?(V.minval||'').slice(1):'<'+(V.minval||'');$('#minInp').value=V.minval;render()};
-const Q={sense:['N/A'],imp:['>3,000'],thr:['>8.0','Non capture']},QL={sense:'Sensing',imp:'Impedance',thr:'Threshold'};
-const HINT='แตะช่อง Sensing / Impedance / Threshold เพื่อเลือกค่าพิเศษ (N/A, >3,000, >8.0, Non capture) หรือพิมพ์เองได้';
+const Q={pace:['<0.1'],sense:['N/A'],imp:['>3,000'],thr:['>8.0','Non capture']},QL={pace:'Pacing',sense:'Sensing',imp:'Impedance',thr:'Threshold'};
+const HINT='แตะช่อง Pacing / Sensing / Impedance / Threshold เพื่อเลือกค่าพิเศษ (<0.1, N/A, >3,000, >8.0, Non capture) หรือพิมพ์เองได้ · Sensing กรอกเป็นช่วงได้ เช่น 11.20-15.68';
 let qel=null;
 const qhint=()=>{qel=null;$('#quick').textContent=HINT};
 document.addEventListener('focusin',e=>{
   const t=e.target;if(t.closest&&t.closest('#quick'))return;
-  const m=t.dataset&&t.dataset.k&&t.dataset.k.match(/^(sense|imp|thr)_(A|RV|LV)$/);
+  const m=t.dataset&&t.dataset.k&&t.dataset.k.match(/^(pace|sense|imp|thr)_(A|RV|LV)$/);
   if(!m){qhint();return}
   qel=t;const q=$('#quick');q.innerHTML='';
   const l=document.createElement('span');l.textContent=QL[m[1]]+' · '+m[2]+':';q.appendChild(l);
@@ -508,18 +458,54 @@ document.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.target.tagName!=='
   const f=[...document.querySelectorAll('main input:not([type=checkbox]),main select:not([hidden]),main textarea')].filter(x=>x.offsetParent);const i=f.indexOf(e.target);if(i>-1&&f[i+1])f[i+1].focus()});
 (function(){const box=$('#bats');if(!box||document.documentElement.dataset.theme!=='halloween')return;
   const P='M32 7L30 2 29.5 9C26 7 20 5 12 8 8 9.5 4 12 1 17 5 15.5 8 16 10 19 12 16.5 15 16.5 18 19.5 20 17.5 23 18 25 21.5L27 20C28 24 30 27 32 30 34 27 36 24 37 20L39 21.5C41 18 44 17.5 46 19.5 49 16.5 52 16.5 54 19 56 16 59 15.5 63 17 60 12 56 9.5 52 8 44 5 38 7 34.5 9L34 2 32 7Z';
-  const cfg=[[30,20,18,0],[22,36,24,-8],[17,50,21,-13],[34,28,27,-4],[24,62,23,-16],[15,44,30,-21],[19,72,26,-10]];
+  const cfg=[[34,8,19,0],[24,24,26,-9],[42,38,22,-14],[20,56,29,-4],[30,70,24,-18],[26,14,32,-22]];
   box.innerHTML=cfg.map(([w,top,dur,del],n)=>`<div class="bat${n%2?' l':''}" style="width:${w}px;top:${top}%;animation-duration:${dur}s;animation-delay:${del}s${n%2?';animation-direction:reverse':''}"><i style="animation-duration:${(2.2+n*.45).toFixed(2)}s"><svg viewBox="0 0 64 32"><path d="${P}"/></svg></i></div>`).join('')})();
-{const v=document.documentElement.dataset.ver||'V01';$('#ver').textContent=v;document.title='CARELINK F/U report '+v}
+{const v=document.documentElement.dataset.ver||'V01';$('#ver').textContent=v;document.title='Device FU '+v}
 (function(){const box=$('#lights');if(!box||document.documentElement.dataset.theme!=='loykrathong')return;
   const LAN='<svg viewBox="0 0 40 60"><rect x="14" y="2" width="12" height="5" rx="2" fill="#7a4310"/><path d="M9 10Q20 4 31 10L35 44Q20 52 5 44Z" fill="#ffb43a"/><path d="M20 6V48M13 8L10 46M27 8L30 46" stroke="#e07d10" stroke-width="1" fill="none" opacity=".6"/><rect x="12" y="46" width="16" height="4" rx="1.5" fill="#7a4310"/><ellipse cx="20" cy="40" rx="4" ry="6" fill="#fff3b8" opacity=".9"/></svg>';
   const KRA='<svg viewBox="0 0 64 46"><path d="M4 31Q32 41 60 31L54 41Q32 47 10 41Z" fill="#2f8f4e"/><ellipse cx="32" cy="31" rx="28" ry="6" fill="#49b36a"/><path d="M8 23Q24 25 32 31Q12 33 8 23Z" fill="#ffb3cf"/><path d="M56 23Q40 25 32 31Q52 33 56 23Z" fill="#ffb3cf"/><path d="M18 14Q30 20 32 31Q18 29 18 14Z" fill="#ff6fa3"/><path d="M46 14Q34 20 32 31Q46 29 46 14Z" fill="#ff6fa3"/><path d="M32 9Q40 19 32 31Q24 19 32 9Z" fill="#ff8fb8"/><rect x="30" y="15" width="4" height="12" rx="1" fill="#fff0cc"/><ellipse cx="32" cy="11" rx="2.6" ry="4.4" fill="#ffd45a"/></svg>';
-  const lan=[[15,10,11,0],[19,38,14,-5],[14,64,12,-8],[17,88,15,-11]];
-  const kra=[[30,3,34,0],[26,3,40,-18]];
+  const lan=[[26,8,26,0],[34,22,32,-10],[22,38,28,-17],[30,55,34,-5],[24,70,30,-22],[28,86,36,-14]];
+  const kra=[[50,84,44,0],[40,98,52,-20],[46,112,58,-34]];
   box.innerHTML=lan.map(([w,left,dur,del],n)=>`<div class="lan" style="width:${w}px;left:${left}%;animation-duration:${dur}s;animation-delay:${del}s"><i style="animation-duration:${(3+n*.7).toFixed(1)}s">${LAN}</i></div>`).join('')+
-   kra.map(([w,bot,dur,del],n)=>`<div class="kra" style="width:${w}px;bottom:${bot}px;animation-duration:${dur}s;animation-delay:${del}s"><i style="animation-duration:${(2.4+n*.6).toFixed(1)}s">${KRA}</i></div>`).join('')})();
+   kra.map(([w,bot,dur,del],n)=>`<div class="kra" style="width:${w}px;top:calc(100% - ${Math.round(w*0.72)}px - ${bot}px);animation-duration:${dur}s;animation-delay:${del}s"><i style="animation-duration:${(2.4+n*.6).toFixed(1)}s">${KRA}</i></div>`).join('')})();
 qhint();
 render();preview();
+
+/* ---------- Auto-update (GitHub Pages / iPhone shortcut) ---------- */
+(function(){
+  if(!/^https?:$/.test(location.protocol))return;
+  let dirty=false,busy=false,last=0;
+  const mark=()=>{dirty=true};
+  ['input','change'].forEach(t=>document.addEventListener(t,mark,true));
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('main button'))mark()},true);
+  const K='fu_page_hash';
+  const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return(h>>>0).toString(36)+s.length.toString(36)};
+  const get=()=>{try{return localStorage.getItem(K)}catch(e){return null}};
+  const put=v=>{try{localStorage.setItem(K,v)}catch(e){}};
+  const go=h=>{put(h);const u=new URL(location.href);u.searchParams.set('v',h);location.replace(u.toString())};
+  function bar(h){
+    if(document.getElementById('upd'))return;
+    const b=document.createElement('button');b.id='upd';b.type='button';
+    b.style.cssText='position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--ac);color:var(--acx);border:0;border-radius:12px;padding:14px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.35)';
+    b.textContent='มีเวอร์ชันใหม่ — แตะเพื่ออัปเดต (ข้อมูลที่กรอกจะหายไป)';
+    b.onclick=()=>go(h);document.body.appendChild(b);
+  }
+  async function check(){
+    if(busy||Date.now()-last<30000)return;busy=true;last=Date.now();
+    try{
+      const u=new URL(location.href);u.searchParams.delete('v');u.searchParams.set('_',Date.now());u.hash='';
+      const r=await fetch(u.toString(),{cache:'no-store'});
+      if(!r.ok)return;
+      const h=hash(await r.text()),old=get();
+      if(!old){put(h);return}
+      if(old===h)return;
+      if(dirty)bar(h);else go(h);
+    }catch(e){}finally{busy=false}
+  }
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')check()});
+  window.addEventListener('pageshow',e=>{if(e.persisted)check()});
+  check();
+})();
 </script>
 </body>
 </html>

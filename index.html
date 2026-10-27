@@ -95,13 +95,13 @@ aside h2{font-size:15px;margin:0 0 10px}
 input,textarea,select{font-size:16px!important}
 
 /* ---------- Halloween (auto: through 31 Oct 2026, or ?theme=halloween) ---------- */
-:root[data-theme="halloween"]{color-scheme:dark;--bg:#12081d;--card:#1c0f2e;--tx:#f4eaff;--mu:#b7a1d4;--bd:#3b2559;--fl:#140a22;--ac:#ff8a1f;--hd:#3d1668;--acs:#2d1749;--acx:#1a0a00}
-[data-theme="halloween"] .sec>h2{color:#ffc98a;border-bottom:2px solid var(--ac)}
-[data-theme="halloween"] .sec>h2 small{color:rgba(255,201,138,.7)}
+:root[data-theme="halloween"]{color-scheme:dark;--bg:#1a0e2e;--card:#251642;--tx:#f7efff;--mu:#c2aae3;--bd:#47296f;--fl:#1c1032;--ac:#ff9f45;--hd:#5b2d9e;--acs:#341a5c;--acx:#241000}
+[data-theme="halloween"] .sec>h2{color:#ffdcae;border-bottom:2px solid var(--ac)}
+[data-theme="halloween"] .sec>h2 small{color:rgba(255,220,174,.75)}
 [data-theme="halloween"] h1::before{content:"🎃 "}
 [data-theme="halloween"] .top .in{padding-top:max(14px,env(safe-area-inset-top,0px))}
 #bats{display:none}
-[data-theme="halloween"] #bats{display:block;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:4}
+[data-theme="halloween"] #bats{display:none;position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:4}
 .bat{position:absolute;left:0;will-change:transform;animation:batfly linear infinite}
 .bat i{display:block;animation:batbob ease-in-out infinite alternate}
 .bat svg{display:block;width:100%;height:auto;fill:#a577e6;opacity:.6;animation:batflap .42s ease-in-out infinite alternate;transform-origin:50% 40%}
@@ -114,13 +114,42 @@ input,textarea,select{font-size:16px!important}
 
 /* ---------- Halloween burst: bats fly out of the screen on open ---------- */
 #burst{position:fixed;left:0;top:0;width:100%;height:100%;z-index:60;pointer-events:none;overflow:hidden}
-#burst .bglow{position:absolute;left:0;top:0;width:100%;height:100%;background:radial-gradient(circle at 50% 46%,rgba(255,160,50,.6),rgba(95,32,150,.82) 36%,rgba(8,3,16,.95) 76%)}
+#burst .bglow{position:absolute;left:0;top:0;width:100%;height:100%;background:radial-gradient(circle at 50% 46%,rgba(255,150,60,.75),rgba(140,60,210,.85) 38%,rgba(26,14,46,.95) 78%)}
 #burst .bt{position:absolute;width:240px;will-change:transform,opacity;transform-origin:50% 50%}
-#burst .bt svg{display:block;width:100%;height:auto;fill:#06010c;stroke:#c9a0ff;stroke-width:1.1;stroke-linejoin:round;animation:bflap .13s ease-in-out infinite alternate;transform-origin:50% 40%}
-#burst .bt .ey{fill:#ffa63a;stroke:none;filter:drop-shadow(0 0 2px #ff8a1f)}
+#burst .bt svg{display:block;width:100%;height:auto;fill:#1d0b38;stroke:#c79bff;stroke-width:1.1;stroke-linejoin:round;animation:bflap .13s ease-in-out infinite alternate;transform-origin:50% 40%}
+#burst .bt .ey{fill:#ffb15c;stroke:none;filter:drop-shadow(0 0 2px #ff9f45)}
 #burst .bt .fg{fill:#fff;stroke:none}
 @keyframes bflap{from{transform:scaleY(1)}to{transform:scaleY(.35)}}
 @media (prefers-reduced-motion:reduce){#burst{display:none}}
+
+/* ---------- Halloween header: night scene ---------- */
+.hdfx{display:none}
+[data-theme="halloween"] h1::before{content:none}
+[data-theme="halloween"] .top{position:relative;overflow:hidden;background:linear-gradient(180deg,#1a0b3a 0%,#3d1b78 50%,#7a3aa0 80%,#e07a45 120%)}
+[data-theme="halloween"] .top .in{position:relative;z-index:2;min-height:100px;align-items:flex-start;padding-top:16px;padding-bottom:0}
+[data-theme="halloween"] .top h1{font-size:23px;color:#fff3e0;text-shadow:0 0 16px rgba(255,170,80,.6),0 2px 0 rgba(0,0,0,.3)}
+[data-theme="halloween"] .top .ver{background:rgba(255,159,69,.22);color:#ffe2bd;box-shadow:inset 0 0 0 1px rgba(255,190,120,.45);text-shadow:none}
+[data-theme="halloween"] .top button.q{background:rgba(20,8,40,.45);border-color:rgba(255,200,140,.45);color:#ffe9cf}
+@media (max-width:420px){[data-theme="halloween"] .top h1{font-size:20px}}
+[data-theme="halloween"] .hdfx{display:block;position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:1}
+.stars{position:absolute;left:0;top:0;width:100%;height:62%;background:radial-gradient(1.3px 1.3px at 8% 24%,#fff,transparent),radial-gradient(1px 1px at 19% 62%,#fff,transparent),radial-gradient(1.4px 1.4px at 31% 18%,#fff,transparent),radial-gradient(1px 1px at 44% 70%,#fff,transparent),radial-gradient(1.3px 1.3px at 63% 14%,#fff,transparent),radial-gradient(1px 1px at 74% 58%,#fff,transparent),radial-gradient(1.4px 1.4px at 86% 28%,#fff,transparent),radial-gradient(1px 1px at 93% 66%,#fff,transparent);animation:twk 4s ease-in-out infinite alternate}
+@keyframes twk{from{opacity:.45}to{opacity:1}}
+.hdfx .col{position:absolute;left:0;right:0;top:0;bottom:0;max-width:1180px;margin:0 auto}
+.moon{position:absolute;left:52%;top:10px;width:50px;height:50px;border-radius:50%;background:radial-gradient(circle at 36% 34%,#fff6d8,#ffd98f 58%,#f2aa5c);box-shadow:0 0 26px 7px rgba(255,205,130,.5),0 0 70px 22px rgba(255,160,80,.22)}
+.moon::before{content:"";position:absolute;left:30%;top:52%;width:9px;height:9px;border-radius:50%;background:rgba(210,130,60,.28);box-shadow:15px -12px 0 -1px rgba(210,130,60,.22),16px 9px 0 -2px rgba(210,130,60,.2)}
+.gnd{position:absolute;left:0;bottom:0;width:100%;height:44px;background:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 360 44%27 width=%27360%27 height=%2744%27%3E%3Cg fill=%27%2312061f%27%3E%3Cpath d=%27M0 44V35Q30 29 70 34T150 33Q200 28 250 34T330 32Q345 31 360 35V44Z%27/%3E%3Cpath d=%27M112 36V27Q116 22 120 27V36ZM130 36V29Q133 25 136 29V36Z%27/%3E%3Crect x=%27190%27 y=%2717%27 width=%2736%27 height=%2720%27/%3E%3Cpath d=%27M186 18L208 6L230 18Z%27/%3E%3Crect x=%27221%27 y=%278%27 width=%277%27 height=%2712%27/%3E%3C/g%3E%3Cg stroke=%27%2312061f%27 stroke-width=%272%27 fill=%27none%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M40 36V22M40 27L32 19M40 24L48 16M32 19L29 13M48 16L52 11%27/%3E%3Cpath d=%27M300 36V24M300 28L293 21M300 25L307 18%27/%3E%3C/g%3E%3Cg fill=%27%23ffae42%27%3E%3Crect x=%27196%27 y=%2723%27 width=%275%27 height=%276%27/%3E%3Crect x=%27210%27 y=%2723%27 width=%275%27 height=%276%27/%3E%3C/g%3E%3C/svg%3E") repeat-x left bottom/auto 44px}
+.hb{position:absolute;left:0;will-change:transform;animation:hbfly linear infinite}
+.hb i{display:block;animation:hbbob ease-in-out infinite alternate}
+.hb svg{display:block;width:100%;height:auto;fill:#12061f;animation:batflap .26s ease-in-out infinite alternate;transform-origin:50% 40%}
+@keyframes hbfly{0%{transform:translate3d(-12px,0,0) scaleX(1)}49.9%{transform:translate3d(calc(100vw - 16px),0,0) scaleX(1)}50%{transform:translate3d(calc(100vw - 16px),0,0) scaleX(-1)}99.9%{transform:translate3d(-12px,0,0) scaleX(-1)}100%{transform:translate3d(-12px,0,0) scaleX(1)}}
+@keyframes hbbob{from{transform:translate3d(0,-4px,0) rotate(-4deg)}to{transform:translate3d(0,4px,0) rotate(4deg)}}
+.pump{position:absolute;left:128px;bottom:3px;width:46px;height:42px}
+.pump::before{content:"";position:absolute;left:50%;top:50%;width:230%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,176,70,.6),rgba(255,140,40,0) 62%);animation:pglow 2.6s ease-in-out infinite alternate}
+.pump svg{position:relative;display:block;width:100%;height:100%;filter:drop-shadow(0 0 6px rgba(255,150,40,.8))}
+.pump .fc{fill:#fff1ae;stroke:#fff1ae;stroke-width:1.2;stroke-linejoin:round;animation:pflick 2.6s ease-in-out infinite alternate}
+@keyframes pglow{from{opacity:.5;transform:translate(-50%,-50%) scale(.92)}to{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
+@keyframes pflick{from{opacity:.8}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.hb,.hb i,.hb svg,.pump::before,.pump .fc,.stars{animation:none}}
 .ver{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;background:rgba(255,255,255,.2);color:#fff;vertical-align:middle;white-space:nowrap}
 .top h1{flex:1;min-width:0}.top button.q{flex:0 0 auto}
 @media (max-width:420px){.top .in{gap:8px;padding-left:14px;padding-right:14px}h1{font-size:16px}.ver{margin-left:5px;padding:2px 7px;font-size:11px}.top button.q{padding:5px 11px;font-size:13px}}
@@ -150,7 +179,7 @@ input,textarea,select{font-size:16px!important}
 </head>
 <body>
 <div id="bats" aria-hidden="true"></div><div id="lights" aria-hidden="true"></div>
-<header class="top"><div class="in"><h1>Device FU<span class="ver" id="ver"></span></h1><button class="q" id="clr">Clear all</button></div></header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><radialGradient id="pg" cx=".5" cy=".38" r=".75"><stop offset="0" stop-color="#ffc56e"/><stop offset=".55" stop-color="#ff8b25"/><stop offset="1" stop-color="#e2601a"/></radialGradient></defs><symbol id="bp" viewBox="0 0 64 32"><path d="M32 7L30 2 29.5 9C26 7 20 5 12 8 8 9.5 4 12 1 17 5 15.5 8 16 10 19 12 16.5 15 16.5 18 19.5 20 17.5 23 18 25 21.5L27 20C28 24 30 27 32 30 34 27 36 24 37 20L39 21.5C41 18 44 17.5 46 19.5 49 16.5 52 16.5 54 19 56 16 59 15.5 63 17 60 12 56 9.5 52 8 44 5 38 7 34.5 9L34 2 32 7Z"/></symbol></svg><header class="top"><div class="hdfx" aria-hidden="true"><div class="stars"></div><div class="col"><div class="moon"></div></div><div class="gnd"></div><div class="hb" style="width:30px;top:12%;animation-duration:10s;animation-delay:0s"><i style="animation-duration:1.4s"><svg viewBox="0 0 64 32"><use href="#bp"/></svg></i></div><div class="hb" style="width:22px;top:36%;animation-duration:14s;animation-delay:-6s"><i style="animation-duration:1.9s"><svg viewBox="0 0 64 32"><use href="#bp"/></svg></i></div><div class="hb" style="width:26px;top:20%;animation-duration:17s;animation-delay:-11s"><i style="animation-duration:2.4s"><svg viewBox="0 0 64 32"><use href="#bp"/></svg></i></div><div class="col"><span class="pump"><svg viewBox="0 0 48 44"><path d="M24 12Q23 6 28 3" stroke="#7fa63f" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M27 5q5-3.5 9 0-4.5 3.5-9 0z" fill="#63c36a"/><ellipse cx="13" cy="26" rx="10" ry="14" fill="url(#pg)"/><ellipse cx="35" cy="26" rx="10" ry="14" fill="url(#pg)"/><ellipse cx="24" cy="26" rx="9.5" ry="15.5" fill="url(#pg)"/><path d="M17.5 12Q14.5 26 17.5 40M30.5 12Q33.5 26 30.5 40" stroke="#b84a0f" stroke-opacity=".35" stroke-width="1" fill="none"/><g class="fc"><path d="M14.5 21.5l-3.8 6h7.6zM33.5 21.5l-3.8 6h7.6zM24 28l-1.8 2.8h3.6z"/><path d="M13 31.5q11 10 22 0z"/></g><rect x="19.2" y="31" width="3" height="3.4" fill="#ff9a30"/><rect x="25.8" y="31" width="3" height="3.4" fill="#ff9a30"/></svg></span></div></div><div class="in"><h1>Device FU<span class="ver" id="ver"></span></h1><button class="q" id="clr">Clear all</button></div></header>
 <div class="wrap">
 <main>
 
@@ -480,14 +509,14 @@ document.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.target.tagName!=='
     const o=document.createElement('div');o.id='burst';o.setAttribute('aria-hidden','true');
     const glow=document.createElement('div');glow.className='bglow';o.appendChild(glow);
     document.body.appendChild(o);
-    const W=window.innerWidth,H=window.innerHeight,cx=W/2,cy=H*.46,N=12;
+    const W=window.innerWidth,H=window.innerHeight,cx=W/2,cy=H*.46,N=10;
     let end=0;
     for(let i=0;i<N;i++){
       const a=(i/N)*Math.PI*2+(Math.random()-.5)*.55;
       const dist=Math.max(W,H)*(.9+Math.random()*.8);
       const dx=Math.cos(a)*dist,dy=Math.sin(a)*dist*.85-H*.08;
       const sc=2.2+Math.random()*2.3,rot=(Math.random()-.5)*50;
-      const dur=1500+Math.random()*1400,del=Math.random()*1000;
+      const dur=800+Math.random()*700,del=Math.random()*350;
       end=Math.max(end,dur+del);
       const b=document.createElement('div');b.className='bt';
       b.style.left=(cx-120)+'px';b.style.top=(cy-60)+'px';
@@ -497,11 +526,11 @@ document.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.target.tagName!=='
         {transform:'translate(0px,0px) scale(.05) rotate(0deg)',opacity:0,offset:0},
         {opacity:1,offset:.12},
         {transform:'translate('+dx*.42+'px,'+dy*.42+'px) scale('+sc*.3+') rotate('+rot*.5+'deg)',opacity:1,offset:.6},
-        {transform:'translate('+dx+'px,'+dy+'px) scale('+sc+') rotate('+rot+'deg)',opacity:.95,offset:1}
+        {transform:'translate('+dx+'px,'+dy+'px) scale('+sc+') rotate('+rot+'deg)',opacity:0,offset:1}
       ],{duration:dur,delay:del,easing:'cubic-bezier(.5,0,.9,.55)',fill:'both'});
     }
-    glow.animate([{opacity:1,offset:0},{opacity:1,offset:.5},{opacity:0,offset:1}],{duration:end+300,easing:'ease-out',fill:'both'});
-    timer=setTimeout(()=>{o.remove()},end+500);
+    glow.animate([{opacity:1,offset:0},{opacity:.9,offset:.25},{opacity:0,offset:1}],{duration:end,easing:'ease-out',fill:'both'});
+    timer=setTimeout(()=>{o.remove()},end+100);
   }
   window.batBurst=burst;
   const h=document.querySelector('.top h1');if(h)h.addEventListener('click',burst);
@@ -551,7 +580,7 @@ render();preview();
   }
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')check()});
   window.addEventListener('pageshow',e=>{if(e.persisted)check()});
-  check();
+  setTimeout(check,2500);
 })();
 </script>
 </body>

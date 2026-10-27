@@ -185,7 +185,7 @@ input,textarea,select{font-size:16px!important}
 
 <section class="sec"><h2>Present rhythm</h2><input data-k="rhythm" placeholder="เช่น AP-VP, SR"></section>
 
-<section class="sec"><h2>ผู้ป่วย</h2><div class="g" id="pt"></div></section>
+<section class="sec"><h2>Patient</h2><div class="g" id="pt"></div></section>
 
 <section class="sec"><h2>อุปกรณ์</h2><div class="g" id="dev"></div></section>
 
@@ -279,7 +279,7 @@ input,textarea,select{font-size:16px!important}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const V={};
-const pt=[['name','ชื่อ-นามสกุล','full'],['hn','HN'],['fu','Follow-up date','date']];
+const pt=[['name','ชื่อ-นามสกุล','full'],['hn','HN'],['fu','Follow-up date','date'],['admit','Admit'],['hosp','Hospital']];
 const dev=[['model','Model'],['doi','DOI (วันที่ใส่)','date'],['mode','Mode'],['rate','Rate','','ppm','text']];
 const DZ=[['VF','VF'],['FVT','FVT'],['VT','VT'],['VTM','VT Monitor']];
 const RXN=6,RXT=['J','ATP'],ATP=['Burst','Ramp','Burst+','Ramp+'];
@@ -359,7 +359,7 @@ function dzRep(){const on=dzOn();if(!on.length)return'';
 const noteTxt=()=>[V.noep?'No episode':'',V.goodp?'Good parameters':'',V.notes||''].filter(Boolean).join('\n');
 const discRep=()=>`<div class="dc"><span>Discrimination</span><i class="u" style="white-space:normal;text-align:left">${gv('disc')||'-'}</i></div>`;
 function body(){
-  return `<div class="doc">${repTitle()?`<div class="rt">${repTitle()}</div>`:''}<div class="pt"><span>ชื่อ ${gv('name')||'-'}</span><span>HN ${gv('hn')||'-'}</span></div><div class="rh">Present rhythm: ${gv('rhythm')||'-'}</div>
+  return `<div class="doc">${repTitle()?`<div class="rt">${repTitle()}</div>`:''}<div class="pt"><span>ชื่อ ${gv('name')||'-'}</span><span>HN ${gv('hn')||'-'}</span>${V.admit?`<span>${gv('admit')}</span>`:''}${V.hosp?`<span>${gv('hosp')}</span>`:''}</div><div class="rh">Present rhythm: ${gv('rhythm')||'-'}</div>
 <div class="st"><div class="hd"><span class="lg">Medtronic</span><span style="display:flex;gap:4px;flex:1;max-width:60%">Follow up date ${U(gdv('fu'))}</span></div>
 <div class="ttl">${esc(devType()||'Pacemaker / ICD / CRT / CRT-D')} F/U</div>
 <div class="ln"><span>Model ${U(gv('model'))}</span><span>DOI ${U(gdv('doi'))}</span></div>
@@ -392,7 +392,7 @@ const render=()=>{
 function text(){
   const L=[repTitle()||'DEVICE FOLLOW-UP REPORT'];
   const p=(l,k,d)=>V[k]&&L.push(l+': '+(d?fd(V[k]):V[k]));
-  p('Present rhythm','rhythm');p('Name','name');p('HN','hn');
+  p('Present rhythm','rhythm');p('Name','name');p('HN','hn');if(V.admit)L.push(V.admit);if(V.hosp)L.push(V.hosp);
   p('Follow-up date','fu',1);L.push('');
   if(V.dtype)L.push('Type: '+devType());p('Model','model');p('DOI','doi',1);p('Mode','mode');p('Rate (ppm)','rate');p('Battery (V)','batt');
   if(V.initchk)L.push('Est. longevity: Initializing');else if(V.est)L.push('Est. longevity: '+V.est+' '+unitWord(V.estunit,V.est));
@@ -414,10 +414,28 @@ function text(){
 }
 const msg=t=>{$('#msg').textContent=t};
 const base=()=>'device-followup'+(V.fu?'-'+V.fu:'');
+const MIME={png:'image/png',pdf:'application/pdf',txt:'text/plain',html:'text/html'};
+let pend=null;
+const shareF=f=>navigator.share({files:[f]}).then(()=>{pend=null;msg('บันทึกแล้ว')});
+async function devSave(name,data){
+  const ext=name.split('.').pop(),ty=MIME[ext]||'application/octet-stream';
+  const b=data instanceof Blob?data:new Blob([data],{type:ty});
+  const f=new File([b],name,{type:b.type||ty});
+  if(navigator.canShare&&('ontouchend' in document)&&navigator.canShare({files:[f]})){
+    try{await shareF(f);return}
+    catch(e){
+      if(e&&e.name==='AbortError'){pend=null;msg('ยกเลิก');return}
+      if(e&&e.name==='NotAllowedError'){pend=f;msg('ไฟล์พร้อมแล้ว — แตะปุ่มเดิมอีกครั้งเพื่อบันทึก');return}
+    }
+  }
+  try{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();msg('บันทึกแล้ว')}catch(e){msg('บันทึกไม่สำเร็จ')}
+}
+function usePend(ext){if(!pend||!pend.name.endsWith('.'+ext))return false;const f=pend;pend=null;shareF(f).catch(e=>msg(e&&e.name==='AbortError'?'ยกเลิก':'บันทึกไม่สำเร็จ'));return true}
+document.addEventListener('input',()=>{pend=null},true);document.addEventListener('change',()=>{pend=null},true);
 async function save(name,data){
   let d=null;try{d=await claude.use('downloads')}catch(e){}
   if(!d&&typeof claude==='undefined'){
-    try{const b=data instanceof Blob?data:new Blob([data]);const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();msg('บันทึกแล้ว')}catch(e){msg('บันทึกไม่สำเร็จ')}
+    await devSave(name,data);
     return}
   if(!d){msg('ดาวน์โหลดไม่ได้ในมุมมองนี้ — กด Copy แทน');return}
   try{await d.save({filename:name,data});msg('บันทึกแล้ว')}catch(e){msg(e&&e.code==='declined'?'ยกเลิก':'บันทึกไม่สำเร็จ ('+(e&&e.code||'error')+')')}
@@ -432,6 +450,7 @@ async function shot(scale){
   try{return await html2canvas(box,{scale,backgroundColor:'#fff'})}finally{box.remove()}
 }
 $('#pdf').onclick=async()=>{
+  if(usePend('pdf'))return;
   msg('กำลังโหลดตัวสร้าง PDF...');
   try{await libs()}catch(e){msg('โหลดตัวสร้าง PDF ไม่ได้ (ต้องต่อเน็ต) — ใช้ .html หรือ Copy แทน');return}
   msg('กำลังสร้าง PDF...');
@@ -449,6 +468,7 @@ $('#pdf').onclick=async()=>{
   }catch(e){msg('สร้าง PDF ไม่สำเร็จ')}
 };
 $('#img').onclick=async()=>{
+  if(usePend('png'))return;
   msg('กำลังโหลดตัวสร้างรูป...');
   try{await libs()}catch(e){msg('โหลดตัวสร้างรูปไม่ได้ (ต้องต่อเน็ต) — ใช้ .html หรือ Copy แทน');return}
   msg('กำลังสร้างรูป...');
@@ -546,6 +566,7 @@ document.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.target.tagName!=='
    kra.map(([w,bot,dur,del],n)=>`<div class="kra" style="width:${w}px;top:calc(100% - ${Math.round(w*0.72)}px - ${bot}px);animation-duration:${dur}s;animation-delay:${del}s"><i style="animation-duration:${(2.4+n*.6).toFixed(1)}s">${KRA}</i></div>`).join('')})();
 qhint();
 render();preview();
+setTimeout(()=>{libs().catch(()=>{})},1200);
 
 /* ---------- Auto-update (GitHub Pages / iPhone shortcut) ---------- */
 (function(){

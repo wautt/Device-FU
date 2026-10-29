@@ -187,7 +187,7 @@ input,textarea,select{font-size:16px!important}
 
 <section class="sec"><h2>Patient</h2><div class="g" id="pt"></div></section>
 
-<section class="sec"><h2>อุปกรณ์</h2><div class="g" id="dev"></div></section>
+<section class="sec"><h2>Device</h2><div class="g" id="dev"></div></section>
 
 <section class="sec"><h2>Battery</h2>
   <div class="g stack">
@@ -257,21 +257,21 @@ input,textarea,select{font-size:16px!important}
   <label>Note</label>
   <div class="chips" style="margin-bottom:10px"><label class="chip"><input type="checkbox" data-k="noep">No episode</label><label class="chip"><input type="checkbox" data-k="goodp">Good parameters</label></div>
   <textarea data-k="notes" rows="3" placeholder="พิมพ์ข้อความ (ถ้ามี)"></textarea>
-  <div style="margin-top:14px"><label>Next follow up</label><input type="date" data-k="nextfu"></div></section>
+  <div style="margin-top:14px"><label>Next follow up</label><div class="seg" style="margin-bottom:8px"><button type="button" data-set="nfmode" data-val="Date">Date</button><button type="button" data-set="nfmode" data-val="Month">Month</button></div><div id="nfDate"><input type="date" data-k="nextfu"></div><div id="nfMon" class="row" style="display:none"><input data-k="nfmon" inputmode="decimal" style="flex:1"><select data-k="nfunit" style="flex:0 0 110px"><option value="months">months</option><option value="เดือน">เดือน</option></select></div></div></section>
 
-<div id="mbar"><button class="p" id="mpdf">Export PDF</button><button id="mprev">ดูใบรายงาน</button></div>
+<div id="mbar"><button class="p" id="mpdf">Export PDF</button><button id="mprev">Preview Report</button></div>
 </main>
 
 <aside>
   <div class="acts">
     <button class="p" id="pdf">Export PDF</button>
-    <button id="img">รูป (.png)</button>
-    <button id="cp">Copy ข้อความ</button>
+    <button id="img">Image (.png)</button>
+    <button id="cp">Copy text</button>
     <button id="txt">.txt</button>
     <button id="exp">.html</button>
   </div>
   <div id="msg"></div>
-  <h2 id="prevH">ใบรายงาน</h2>
+  <h2 id="prevH">Report</h2>
   <div class="rep" id="rep"></div>
 </aside>
 </div>
@@ -356,6 +356,7 @@ function dzRep(){const on=dzOn();if(!on.length)return'';
   if(fit(txt)<9)txt=t.join(',');
   const fs=Math.max(5.5,Math.min(10.5,fit(txt)));
   return `<tr><td class="zn">${z}</td><td>${gv('dzo_'+z)||'-'}</td><td>${V['dzr_'+z]?gv('dzr_'+z):'-'}</td><td class="th" style="font-size:${fs}px">${txt?esc(txt):'-'}</td></tr>`}).join('')}</table>`}
+const nfTxt=()=>V.nfmode==='Month'?(V.nfmon?V.nfmon+' '+(V.nfunit==='เดือน'?'เดือน':(parseFloat(V.nfmon)===1?'month':'months')):''):(V.nextfu?fd(V.nextfu):'');
 const noteTxt=()=>[V.noep?'No episode':'',V.goodp?'Good parameters':'',V.notes||''].filter(Boolean).join('\n');
 const discRep=()=>`<div class="dc"><span>Discrimination</span><i class="u" style="white-space:normal;text-align:left">${gv('disc')||'-'}</i></div>`;
 function body(){
@@ -368,7 +369,7 @@ function body(){
 ${(V.lowchk&&V.rrt)||(V.minchk&&V.minval)?`<div class="ln"><span>${V.lowchk&&V.rrt?`RRT ${U(gv('rrt'))} V`:''}</span><span>${V.minchk&&V.minval?`Min ${U(gv('minval'))} ${unitWord(V.minunit,V.minval)}`:''}</span></div>`:''}
 <div class="ln"><span style="flex:0 0 auto">Charge time <i class="u uf">${gv('chgs')||'-'}</i> Sec @ <i class="u uf">${gv('chgj')||'-'}</i> J</span></div>
 <table><tr><th class="l">Chamber</th>${C.map(c=>`<th>${colHead(c)}</th>`).join('')}</tr>${descRows(measDesc)}${lvVecRows()}<tr><td class="sh" colspan="4">Setting</td></tr>${descRows(setDesc)}</table>${dzRep()}</div>
-<div class="nt"><b>Note:</b> ${esc(noteTxt())||'-'}</div><div class="nt"><b>Next follow up:</b> ${gdv('nextfu')||'-'}</div></div>`;
+<div class="nt"><b>Note:</b> ${esc(noteTxt())||'-'}</div><div class="nt"><b>Next follow up:</b> ${esc(nfTxt())||'-'}</div></div>`;
 }
 let _pt=0,_last='';
 const preview=()=>{_pt=0;const h=body();if(h!==_last){_last=h;$('#rep').innerHTML=h}};
@@ -383,6 +384,7 @@ const render=()=>{
   document.querySelectorAll('[data-set]').forEach(b=>b.classList.toggle('on',V[b.dataset.set]===b.dataset.val));
   document.querySelectorAll('#dseg button').forEach(b=>b.classList.toggle('on',b.dataset.d===V.dtype));
   $('#lvvecWrap').style.display=V.lvvecchk?'':'none';
+  {const m=V.nfmode==='Month';$('#nfDate').style.display=m?'none':'';$('#nfMon').style.display=m?'':'none';document.querySelectorAll('[data-set="nfmode"]').forEach(b=>b.classList.toggle('on',(m?'Month':'Date')===b.dataset.val))}
   $('#vvWrap').style.display=V.lvvecopt==='LVtip to LVring'?'none':'';
   document.querySelectorAll('#tbl tr.x2').forEach(tr=>tr.style.display=V.thr2chk?'':'none');
   const _u=VEC_BLANKS[V.lvvecopt]||0;
@@ -409,7 +411,7 @@ function text(){
   td('Setting',setDesc);
   {const on=dzOn();if(on.length){L.push('Detection zone:');on.forEach(([z])=>{const t=dzRows(z),seg=[V['dzo_'+z]||'',V['dzr_'+z]?V['dzr_'+z]+' bpm':''].filter(Boolean);if(t.length)seg.push('Therapies: '+t.join(', '));L.push('  '+z+(seg.length?': '+seg.join(', '):''))});L.push('')}}
   if(noteTxt())L.push('Note: '+noteTxt());
-  if(V.nextfu)L.push('Next follow up: '+fd(V.nextfu));
+  if(nfTxt())L.push('Next follow up: '+nfTxt());
   return L.join('\n').trim();
 }
 const msg=t=>{$('#msg').textContent=t};

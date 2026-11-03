@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <script>(function(){try{var PIN="",q=new URLSearchParams(location.search).get("theme"),hs=location.hash.replace("#",""),d=new Date(),k=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate(),t=PIN||q||(hs==="loykrathong"||hs==="halloween"||hs==="default"?hs:"")||(k>=20261115&&k<=20261125?"loykrathong":""),h=document.documentElement;h.setAttribute("data-ver",{halloween:"V03.2",loykrathong:"V03 · Loi Krathong"}[t]||"V03");if(t&&t!=="default")h.setAttribute("data-theme",t)}catch(e){}})()</script>
-<script type="application/json" id="relnotes">{"id": "2026-11-02b", "items": ["Add iATP for model Cobalt XT", "Fast VT can select via VT or via VF", "**Loi Krathong theme will be available on 15th November 2026**"]}</script>
+<script type="application/json" id="relnotes">{"id": "2026-11-03", "items": ["Add iATP for model Cobalt XT", "Fast VT can select via VT or via VF", "Fix report title shifted and cut off on iPhone", "**Loi Krathong theme will be available on 15th November 2026**"]}</script>
 <title>Device FU V03 (Loi Krathong)</title>
 <style>
 :root{--bg:#eef3f9;--card:#fff;--tx:#0b1f3a;--mu:#5a6b82;--bd:#d3deeb;--fl:#f5f8fc;--ac:#004b87;--hd:#004b87;--acs:#e5eef8;--acx:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -471,8 +471,11 @@ const FAM='-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Sukh
 const BL='#1e3a8a',BK='#111';
 function drawReport(ctx){
   const f=(s,w)=>{ctx.font=(w||400)+' '+s+'px '+FAM};
-  const T=(s,x,y,col,al)=>{ctx.fillStyle=col||BL;ctx.textAlign=al||'left';ctx.fillText(s,x,y)};
-  const W=s=>ctx.measureText(s).width;
+  // iPhone Safari can mis-measure Thai text on canvas (title drawn off-centre and cut off).
+  // Measure Thai with a hidden DOM span instead, and place it ourselves (left-aligned).
+  const TH=/[\u0E00-\u0E7F]/;
+  const W=s=>{let w=ctx.measureText(s).width;if(TH.test(s)){let m=document.getElementById('cvms');if(!m){m=document.createElement('span');m.id='cvms';m.setAttribute('aria-hidden','true');m.style.cssText='position:absolute;left:-9999px;top:0;visibility:hidden;white-space:pre';document.body.appendChild(m)}m.style.font=ctx.font;m.textContent=s;const d=m.getBoundingClientRect().width;if(d>0)w=d}return w};
+  const T=(s,x,y,col,al)=>{ctx.fillStyle=col||BL;al=al||'left';if(al!=='left'&&TH.test(s)){const w=W(s);x=al==='center'?x-w/2:x-w;al='left'}ctx.textAlign=al;ctx.fillText(s,x,y)};
   const hl=(x1,x2,y,lw)=>{ctx.fillStyle=BL;ctx.fillRect(x1,y,x2-x1,lw||1)};
   const fit=(s,w,size,wt)=>{let z=size;f(z,wt);while(z>6&&W(s)>w){z-=.5;f(z,wt)}return z};
   const uf=(x,w,y,v,size)=>{hl(x,x+w,y+3);v=v||'-';fit(v,w-2,size||12,600);T(v,x+w/2,y,BK,'center')};
